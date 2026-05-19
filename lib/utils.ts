@@ -12,7 +12,8 @@ export const formatCurrency = (
             maximumFractionDigits: 2,
         }).format(value);
     } catch (error) {
-        return `₹${value.toFixed(2)}`;
+        const symbol = currency === "INR" ? "₹" : currency;
+        return `${symbol} ${value.toFixed(2)}`;
     }
 };
 
