@@ -1,5 +1,6 @@
 import { tabs } from "@/constants/data";
 import { colors, components } from "@/constants/theme";
+import { SubscriptionsProvider } from "@/context/SubscriptionsContext";
 import { useAuth } from "@clerk/expo";
 import clsx from "clsx";
 import { Redirect, Tabs } from "expo-router";
@@ -24,6 +25,7 @@ const TabLayout = () => {
         if (!isLoaded) return null;
         if (!isSignedIn) return <Redirect href="/(auth)/sign-in" />;
         return (
+            <SubscriptionsProvider>
             <Tabs
                 screenOptions={{
                         headerShown: false,
@@ -60,7 +62,9 @@ const TabLayout = () => {
                         }}/>
                 ))}
 
-        </Tabs>)
+        </Tabs>
+            </SubscriptionsProvider>
+        )
 }
 
 export default TabLayout;
